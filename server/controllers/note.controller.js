@@ -46,3 +46,15 @@ export function deleteNote(req, res) {
     });
   });
 }
+
+// editing notes
+export function editNote(req, res) {
+  Note.findOne({ id: req.params.noteId })
+  .then((note) => {
+    note.task = req.body.task;
+    return note.save();
+  })
+  .then(() => {
+    res.json(200).end();
+  });
+}
