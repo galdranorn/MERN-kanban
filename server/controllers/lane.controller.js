@@ -36,7 +36,6 @@ export function getLanes(req, res) {
 }
 
 // deleting lane
-
 export function deleteLane(req, res) {
   Lane.findOne({ id: req.params.laneId }).exec((err, lane) => {
     if (err) {
