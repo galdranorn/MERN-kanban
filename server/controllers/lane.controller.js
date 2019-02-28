@@ -59,3 +59,14 @@ export function deleteLane(req, res) {
     });
   });
 }
+
+export function editLane(req, res) {
+  Lane.findOne({ id: req.params.laneId })
+  .then((lane) => {
+    lane.name = req.body.name;
+    return lane.save();
+  })
+  .then(() => {
+    res.json(200).end();
+  });
+}
