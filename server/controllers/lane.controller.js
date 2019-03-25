@@ -1,5 +1,4 @@
 import Lane from '../models/lane';
-import Note from '../models/note';
 import uuid from 'uuid';
 
 // doing nothing
@@ -42,31 +41,21 @@ export function deleteLane(req, res) {
     if (err) {
       res.status(500).send(err);
     }
-
-    lane.notes.forEach(x => {
-      Note.findOne({ id: x.id }).exec((err, note) => {
-        if (err) {
-          res.status(500).send(err);
-        }
-        note.remove(() => {
-          res.status(200).end();
-        });
-      });
-    });
-
     lane.remove(() => {
       res.status(200).end();
     });
   });
 }
 
-export function editLane(req, res) {
-  Lane.findOne({ id: req.params.laneId })
-  .then((lane) => {
-    lane.name = req.body.name;
-    return lane.save();
-  })
-  .then(() => {
-    res.json(200).end();
+export function editLaneName(req, res) {
+  const lane = req.body;
+  if (!lane.id) {
+    res.status(403).end();
+  }
+  Lane.findOneAndUpdate({ id: lane.id }, lane, { new: true }, (err, updatedlane) => {
+    if (err) {
+      res.status(500).send(err);
+    }
+    res.json(updatedlane);
   });
 }
