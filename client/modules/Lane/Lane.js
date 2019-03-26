@@ -5,6 +5,11 @@ import Edit from '../../components/Edit';
 import styles from './Lane.css';
 
 class Lane extends React.Component {
+  constructor(props) {
+    super(props);
+    this.props = props;
+  }
+
   render() {
     const { connectDropTarget, lane, laneNotes, updateLane, addNote, deleteLane, editLane } = this.props;
     const laneId = lane.id;
@@ -12,9 +17,6 @@ class Lane extends React.Component {
     return connectDropTarget(
       <div className={styles.Lane}>
         <div className={styles.LaneHeader}>
-          <div className={styles.LaneAddNote}>
-            <button onClick={() => addNote({ task: 'New Note' }, laneId)}>Add Note</button>
-          </div>
           <Edit
             className={styles.LaneName}
             editing={lane.editing}
@@ -22,6 +24,9 @@ class Lane extends React.Component {
             onValueClick={() => editLane(lane.id)}
             onUpdate={name => updateLane({ ...lane, name, editing: false })}
           />
+          <div className={styles.LaneAddNote}>
+            <button onClick={() => addNote({ task: 'New Note' }, laneId)}>Add Note</button>
+          </div>
           <div className={styles.LaneDelete}>
             <button onClick={() => deleteLane(laneId)}>Remove Lane</button>
           </div>

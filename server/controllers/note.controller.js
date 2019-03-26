@@ -58,16 +58,11 @@ export function deleteNote(req, res) {
   });
 }
 
-// editing notes
-export function editNoteContent(req, res) {
-  const note = req.body;
-  if (!note.id || !note.task) {
-    res.status(403).end();
-  }
-  Note.findOneAndUpdate({ id: note.id }, note, { new: true }, (err, updated) => {
+export function editNoteTask(req, res) {
+  Note.findOneAndUpdate({ id: req.body.id }, req.body, { new: true }).exec((err, newtask) => {
     if (err) {
-      res.status(500).send('error 500');
+      res.status(500).send(err);
     }
-    res.json(updated);
+    res.json(newtask);
   });
 }
