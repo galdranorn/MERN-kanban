@@ -43,17 +43,14 @@ export function deleteNote(req, res) {
     }
 
     if (note) {
-      Lane.findOne({ notes: note._id }).exec((lane) => {
+      Lane.findOne({ notes: note._id }).exec((err, lane) => {
         if (err) {
           res.status(500).send(err);
         }
         lane.notes.pull(note);
         lane.save();
+        res.status(200).send(note);
       });
-
-      res.status(200).send(note);
-    } else {
-      res.status(500).send(err);
     }
   });
 }
