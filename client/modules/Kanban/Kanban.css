@@ -4,18 +4,25 @@
     min-width: 400px;
     max-width: 1000px;
 }
-.AddLane {
-    padding: 15px 20px;
-    border: 2px solid black;
-    background: white;
-    text-transform: uppercase;
-    border-radius: 5px;
-    font-size: 1.2em;
-    margin: 20px;
+
+.buttonLane {
+    text-align: center;
 }
 
-.AddLane:hover {
-    background: steelblue;
+.buttonAddLane {
+    background: white;
+    padding: 10px 20px;
+    border-radius: 5px;
+    border: none;
+    text-transform: uppercase;
+    font-weight: bold;
+    color: #606872;
+    margin: 0 0 40px;
+}
+
+.buttonAddLane:hover {
+    background: #606872;
+    color: white; 
 }
 
 .FlexContainer {

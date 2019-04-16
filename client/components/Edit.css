@@ -2,5 +2,15 @@
 
 }
 .delete {
-
+    padding: 5px 10px;
+    font-size: 1.2em;
+    border: none;
+    font-weight: bold;
+    background: transparent;
+    text-transform: lowercase;
+    margin: 5px;
+    border-radius: 5px;
+}
+.delete:hover {
+    color: red;
 }

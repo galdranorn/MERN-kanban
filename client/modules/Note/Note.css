@@ -1,5 +1,12 @@
 /* Note styles */
 
+.Notes {
+    list-style-type: none;
+    text-align: left;
+}
+
 .Note {
-    
+    font-style: italic;
+    padding: 3px;
+    font-size: 0.9em;
 }
